@@ -7,7 +7,7 @@ import com.ruoyi.framework.web.domain.BaseEntity;
 /**
  * 部门表 sys_dept
  * 
- * @author ruoyi
+ * @author spring
  */
 public class Dept extends BaseEntity
 {
@@ -44,6 +44,9 @@ public class Dept extends BaseEntity
 
     /** 父部门名称 */
     private String parentName;
+
+    /** 所属公司名称 */
+    private Long comId;
 
     public Long getDeptId()
     {
@@ -155,6 +158,14 @@ public class Dept extends BaseEntity
         this.parentName = parentName;
     }
 
+    public Long getComId() {
+        return comId;
+    }
+
+    public void setComId(Long comId) {
+        this.comId = comId;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -172,6 +183,7 @@ public class Dept extends BaseEntity
             .append("createTime", getCreateTime())
             .append("updateBy", getUpdateBy())
             .append("updateTime", getUpdateTime())
+                .append("comId",getComId())
             .toString();
     }
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('检测项列表')" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="serviceitem-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								检测项：<select name="serviceName" >
+									<option value="">所有</option>
+								</select>
+							</li>
+							<li>
+								技术团队：<select name="tech_id" >
+								<option value="">所有</option>
+							</select>
+							</li>
+							<!--<li>
+								服务项厂商：<input type="text" name="serviceitemSupply"/>
+							</li>-->
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+	        <div class="btn-group-sm" id="toolbar" role="group">
+		        <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="sourcepool:serviceitem:add">
+		            <i class="fa fa-plus"></i> 新增
+		        </a>
+		        <a class="btn btn-primary btn-edit disabled" onclick="$.operate.editFull()" shiro:hasPermission="sourcepool:serviceitem:edit">
+		            <i class="fa fa-edit"></i> 修改
+		        </a>
+		        <a class="btn btn-danger btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="sourcepool:serviceitem:remove">
+		            <i class="fa fa-remove"></i> 删除
+		        </a>
+	        </div>
+	        
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+    	</div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('sourcepool:serviceitem:edit')}]];
+        var detailsFlag = [[${@permission.hasPermi('sourcepool:serviceitem:details')}]];
+        var removeFlag = [[${@permission.hasPermi('sourcepool:serviceitem:remove')}]];
+        var prefix = ctx + "sourcepool/serviceitem";
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                modalName: "服务项",
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'serviceItem_id',
+					title : '序号'
+                  /*  "visible": false*/
+				},
+				{
+					field : 'serviceName',
+					title : '检测项名称'
+				},
+				{
+		            field: 'telphone',
+		            title: '联系电话'
+		        }, {
+                        field: 'publisher',
+                        title: '发布人'
+                    },
+
+                    {
+                        field: 'com_id',
+                        title: '公司'
+                    },
+                    {
+                        field: 'publishTime',
+                        title: '发布时间'
+                    },
+                    {
+                        field: 'techteam.teamName',
+                        title: '技术团队'
+                    },
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.editFull(\'' + row.serviceItem_id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.serviceItem_id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="#" onclick="authDataScope(\'' + row.serviceItem_id + '\')"><i class="fa fa-check-square-o"></i>详情</a> ');
+                        return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+
+        /* 查看更多的服务项信息 */
+        function authDataScope(id) {
+            var url = prefix + '/details/' + id;
+            $.modal.open("服务项详情", url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('设备详细信息')" />
+	<th:block th:include="include :: summernote-css" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m" id="form-device-details" th:object="${device}">
+		<input id="device_id" name="device_id" th:field="*{device_id}"  type="hidden">
+		<div class="form-group">
+			<label class="col-sm-3 control-label">设备名字：</label>
+			<div class="col-sm-8">
+				<input id="deviceName" name="deviceName" th:field="*{deviceName}" class="form-control" type="text" required>
+			</div>
+		</div>
+
+		<!--<div class="form-group">
+			<label class="col-sm-3 control-label">类型描述：</label>
+			<div class="col-sm-8">
+				<textarea id="deviceDesc" class="form-control" name="deviceDesc" th:field="*{deviceDesc}" ></textarea>
+			</div>
+		</div>-->
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">设备参数：</label>
+			<div class="col-sm-8">
+				<textarea id="deviceSize" name="deviceSize" th:field="*{deviceSize}" class="form-control" style="height: 100px" type="text" required></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">检测内容：</label>
+			<div class="col-sm-8">
+				<textarea id="testContent" class="form-control"  style="height: 200px" name="testContent" th:field="*{testContent}" ></textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: summernote-js" />
+<script type="text/javascript">
+    var prefix = ctx + "sourcepool/device";
+    $("#form-device-details").validate({
+        focusCleanup: true
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.sourcepool.tability.mapper.TabilityMapper">
+  <resultMap id="TabilityResult" type="Tability">
+    <id column="tAbility_id"  property="tAbility_id" />
+    <result column="materialKind"  property="materialKind" />
+    <result column="sizeRange"  property="sizeRange" />
+    <result column="com_id"  property="com_id" />
+    <result column="mainStandard"  property="mainStandard" />
+    <result column="otherStandard"  property="otherStandard" />
+    <result column="otherinfo"  property="otherinfo" />
+  </resultMap>
+  
+  <sql id="selectTAbilityVo">
+  select t.tAbility_id, t.materialKind, t.sizeRange, t.com_id, t.mainStandard, t.otherStandard, t.otherinfo
+  from t_tability t
+  </sql>
+  
+  <select id="selectTabilityById" parameterType="Long" resultMap="TabilityResult">
+    <include refid="selectTAbilityVo" />
+    where tAbility_id = #{tAbility_id}
+  </select>
+  
+  <delete id="deleteTabilityById" parameterType="Long">
+    delete from t_tability
+    where tAbility_id = #{tAbility_id}
+  </delete>
+
+  <delete id="deleteTabilityByIds" parameterType="String">
+    delete from t_tability where tability_id in
+    <foreach item="tability_id" collection="array" open="(" separator="," close=")">
+      #{tability_id}
+    </foreach>
+  </delete>
+  <insert id="insertTability" parameterType="Tability">
+    insert into t_tability (
+    materialKind,
+    sizeRange,
+    com_id,
+    mainStandard,
+    otherStandard,
+    otherinfo
+    )
+    values (
+      #{materialKind},
+      #{sizeRange},
+      #{com_id},
+      #{mainStandard},
+      #{otherStandard},
+      #{otherinfo}
+    )
+  </insert>
+
+  <update id="updateTability" parameterType="Tability">
+    update t_tability
+    <set>
+      <if test="materialKind != null">materialKind = #{materialKind},</if>
+      <if test="sizeRange != null">sizeRange = #{sizeRange},</if>
+      <if test="com_id != null">com_id = #{com_id},</if>
+      <if test="mainStandard != null">mainStandard = #{mainStandard},</if>
+      <if test="otherStandard != null">otherStandard = #{otherStandard},</if>
+      <if test="otherinfo != null">otherinfo = #{otherinfo}</if>
+    </set>
+    where tAbility_id = #{tAbility_id}
+  </update>
+
+  <select id="selectTabilityList" parameterType="Long" resultMap="TabilityResult">
+  <include refid="selectTAbilityVo" />
+  <where>
+  <if test="sizeRange != null and sizeRange != ''">
+    AND sizeRange like concat('%', #{sizeRange}, '%')
+  </if>
+    <if test="mainStandard != null and mainStandard != ''">
+      AND mainStandard like concat('%', #{mainStandard}, '%')
+    </if>
+    <if test="otherStandard != null and otherStandard != ''">
+    AND otherStandard like concat('%', #{otherStandard}, '%')
+  </if>
+  </where>
+  </select>
+
+  <select id="selectTabilitycomList" parameterType="User" resultMap="TabilityResult">
+    <include refid="selectTAbilityVo" />
+    where t.com_id=#{comId}
+    <where>
+    </where>
+  </select>
+</mapper>

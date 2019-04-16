@@ -1,7 +1,11 @@
 package com.ruoyi.project.system.dept.controller;
 
 import java.util.List;
+
+import com.ruoyi.common.utils.security.ShiroUtils;
+import com.ruoyi.project.system.user.domain.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +23,8 @@ import com.ruoyi.framework.web.domain.Ztree;
 import com.ruoyi.project.system.dept.domain.Dept;
 import com.ruoyi.project.system.dept.service.IDeptService;
 import com.ruoyi.project.system.role.domain.Role;
+
+import javax.security.auth.Subject;
 
 /**
  * 部门信息
@@ -41,6 +47,17 @@ public class DeptController extends BaseController
         return prefix + "/dept";
     }
 
+   /* @RequiresPermissions("system:dept:list_com")*/
+    @GetMapping("/list_com")
+    @ResponseBody
+    public List<Dept> list_com(User user)
+    {
+        System.out.println("-----------"+ShiroUtils.getSysUser().getComId());
+        List<Dept> deptList = deptService.selectDeptList_com(ShiroUtils.getSysUser().getComId());
+        return deptList;
+    }
+
+    @RequiresRoles("admin")
     @RequiresPermissions("system:dept:list")
     @GetMapping("/list")
     @ResponseBody

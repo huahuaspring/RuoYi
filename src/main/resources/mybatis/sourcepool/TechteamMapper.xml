@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.sourcepool.techteam.mapper.TechteamMapper">
+    <resultMap id="TechteamResult" type="Techteam">
+    <id column="tech_id"  property="tech_id" />
+    <result column="com_id"  property="com_id" />
+    <result column="teamStructure"  property="teamStructure" />
+    <result column="expertiseTechnology"  property="expertiseTechnology" />
+    <result column="supportPlatform"  property="supportPlatform" />
+    <result column="notes"  property="notes" />
+    <result column="teamName"  property="teamName" />
+  </resultMap>
+ 
+  <sql id="selectTechteamVo" >
+   select  t.tech_id, t.com_id, t.teamStructure, t.expertiseTechnology, t.supportPlatform, t.notes, t.teamName
+    from t_techteam t
+  </sql>
+  
+  <select id="selectTechteamById" parameterType="Long" resultMap="TechteamResult">
+    <include refid="selectTechteamVo" />
+    where tech_id = #{tech_id}
+  </select>
+  
+  <delete id="deleteTechteamById" parameterType="Long">
+    delete from t_techteam
+    where tech_id = #{tech_id}
+  </delete>
+
+  <delete id="deleteTechteamByIds" parameterType="String">
+    delete from t_techteam where tech_id in
+    <foreach item="tech_id" collection="array" open="(" separator="," close=")">
+      #{tech_id}
+    </foreach>
+  </delete>
+  
+  <insert id="insertTechteam" parameterType="Techteam">
+    insert into t_techteam(
+      <if test="com_id != null  and com_id != ''">com_id,</if>
+      <if test="teamStructure != null  and teamStructure != ''">teamStructure,</if>
+      <if test="expertiseTechnology != null  and expertiseTechnology  != ''">expertiseTechnology,</if>
+      <if test="supportPlatform != null  and supportPlatform != ''">supportPlatform,</if>
+      <if test="notes != null  and notes != ''">notes,</if>
+      <if test="teamName != null  and teamName != ''">teamName</if>
+  )values(
+      <if test="com_id != null  and com_id != ''">#{com_id},</if>
+      <if test="teamStructure != null  and teamStructure != ''">#{teamStructure},</if>
+      <if test="expertiseTechnology != null  and expertiseTechnology != ''">#{expertiseTechnology},</if>
+      <if test="supportPlatform != null  and supportPlatform != ''">#{supportPlatform},</if>
+      <if test="notes != null  and notes != ''">#{notes},</if>
+      <if test="teamName != null  and teamName != ''">#{teamName}</if>
+    )
+  </insert>
+
+  <update id="updateTechteam" parameterType="Techteam">
+    update t_techteam
+    <set>
+      <if test="com_id != null and com_id != ''">com_id = #{com_id},</if>
+      <if test="teamStructure != null and teamStructure != ''">teamStructure = #{teamStructure},</if>
+      <if test="expertiseTechnology != null and expertiseTechnology != ''">expertiseTechnology = #{expertiseTechnology},</if>
+      <if test="supportPlatform != null and supportPlatform != ''">supportPlatform = #{supportPlatform},</if>
+      <if test="notes != null and notes != ''">notes = #{notes},</if>
+      <if test="teamName != null and teamName != ''">teamName = #{teamName}</if>
+    </set>
+    where tech_id = #{tech_id}
+  </update>
+
+  <select id="selectTechteamList" parameterType="Long" resultMap="TechteamResult">
+    <include refid="selectTechteamVo" />
+    <where>
+      <if test="teamName != null and teamName != ''">
+        AND teamName like concat('%', #{teamName}, '%')
+      </if>
+      <if test="supportPlatform != null and supportPlatform != ''">
+        AND supportPlatform= #{supportPlatform}
+      </if>
+    <!--  <if test="deviceSupply != null and deviceSupply != ''">
+        AND deviceSupply like concat('%', #{deviceSupply}, '%')
+      </if>-->
+    </where>
+  </select>
+
+  <select id="selectTechteamcomList" parameterType="User" resultMap="TechteamResult">
+  <include refid="selectTechteamVo" />
+    where com_id=#{comId}
+    <where>
+    <!--<if test="teamName != null and teamName != ''">
+      AND teamName like concat('%', #{teamName}, '%')
+    </if>
+    <if test="supportPlatform != null and supportPlatform != ''">
+      AND supportPlatform= #{supportPlatform}
+    </if>-->
+    </where>
+  </select>
+</mapper>

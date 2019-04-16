@@ -2,6 +2,8 @@ package com.ruoyi.project.system.dept.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ruoyi.project.system.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +55,33 @@ public class DeptServiceImpl implements IDeptService
         List<Ztree> ztrees = initZtree(deptList);
         return ztrees;
     }
+
+    /**
+     * 查询公司的部门管理数据
+     *
+     * @param comId 部门信息
+     * @return 部门信息集合
+     */
+    @DataScope(tableAlias = "d")
+    public List<Dept> selectDeptList_com(Long comId)
+    {
+        return deptMapper.selectDeptList_com(comId);
+    }
+
+   /* *//**
+     * 查询公司的部门管理树
+     *
+     * @param user 部门信息
+     * @return 所有部门信息
+     *//*
+    @DataScope(tableAlias = "d")
+    public List<Ztree> selectDeptTree_com(User user)
+    {
+        List<Dept> deptList = deptMapper.selectDeptList_com(user.getComId());
+        List<Ztree> ztrees = initZtree(deptList);
+        return ztrees;
+    }
+*/
 
     /**
      * 根据角色ID查询部门（数据权限）

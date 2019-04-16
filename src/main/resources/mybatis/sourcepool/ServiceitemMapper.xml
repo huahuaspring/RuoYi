@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.sourcepool.serviceitem.mapper.ServiceitemMapper">
+  <resultMap id="ServiceitemResult" type="Serviceitem">
+    <id column="serviceItem_id"  property="serviceItem_id" />
+    <result column="serviceName"  property="serviceName" />
+    <result column="publisher"  property="publisher" />
+    <result column="telphone"  property="telphone" />
+    <result column="com_id"  property="com_id" />
+    <result column="device_id"  property="device_id" />
+    <result column="tech_id"  property="tech_id" />
+    <result column="publishTime"  property="publishTime" />
+    <result column="tAbli_id"  property="tAbli_id" />
+   <association property="techteam"    column="tech_id" javaType="Techteam" resultMap="techteamResult" />
+  </resultMap>
+
+  <resultMap id="techteamResult" type="Techteam">
+    <id column="tech_id"  property="tech_id" />
+    <result column="com_id"  property="com_id" />
+    <result column="teamStructure"  property="teamStructure" />
+    <result column="expertiseTechnology"  property="expertiseTechnology" />
+    <result column="supportPlatform"  property="supportPlatform" />
+    <result column="notes"  property="notes" />
+    <result column="teamName"  property="teamName" />
+  </resultMap>
+
+  <sql id="selectServiceitemVo">
+   select  s.serviceItem_id, s.serviceName, s.publisher, s.telphone, s.com_id, s.device_id, s.tech_id, s.publishTime,s.tAbli_id,
+    t.tech_id,t.teamName,t.teamStructure,t.expertiseTechnology,t.supportPlatform,t.notes
+    from t_serviceitem s
+    left join t_techteam t on s.tech_id = t.tech_id
+  </sql>
+
+  <select id="selectServiceitemById" parameterType="Long" resultMap="ServiceitemResult">
+    <include refid="selectServiceitemVo" />
+    where serviceItem_id = #{serviceItem_id}
+  </select>
+
+  <delete id="deleteServiceitemById" parameterType="Long">
+    delete from t_serviceitem
+    where serviceItem_id = #{serviceItem_id}
+  </delete>
+
+  <delete id="deleteServiceitemByIds" parameterType="String">
+    delete from t_serviceitem where serviceitem_id in
+    <foreach item="serviceitem_id" collection="array" open="(" separator="," close=")">
+      #{serviceitem_id}
+    </foreach>
+  </delete>
+
+  <insert id="insertServiceitem" parameterType="Serviceitem">
+    insert into t_serviceitem (
+      <if test="serviceName != null and serviceName != ''">serviceName,</if>
+      <if test="publisher != null and publisher !=''">publisher,</if>
+      <if test="telphone != null and telphone != ''">telphone,</if>
+      <if test="com_id != null and com_id !=''">com_id,</if>
+      <if test="device_id != null and device_id != ''">device_id,</if>
+      <if test="tech_id != null and tech_id != ''">tech_id,</if>
+     publishTime
+   )
+    values(
+    <if test="serviceName != null and serviceName != ''">#{serviceName},</if>
+    <if test="publisher != null and publisher !=''">#{publisher},</if>
+    <if test="telphone != null and telphone != ''">#{telphone},</if>
+    <if test="com_id != null and com_id !=''">#{com_id},</if>
+    <if test="device_id != null and device_id != ''">#{device_id},</if>
+    <if test="tech_id != null and tech_id != ''">#{tech_id},</if>
+    sysdate()
+   )
+  </insert>
+
+  <update id="updateServiceitem" parameterType="Serviceitem">
+    update t_serviceitem
+    <set>
+      <if test="serviceName != null and serviceName != ''">serviceName = #{serviceName},</if>
+      <if test="publisher != null and publisher != ''">publisher = #{publisher},</if>
+      <if test="telphone != null and device_id != ''">telphone = #{telphone},</if>
+      <if test="com_id != null and com_id != ''">com_id = #{com_id},</if>
+      <if test="device_id != null and device_id != ''">device_id = #{device_id},</if>
+      <if test="tech_id != null and tech_id != ''">tech_id = #{tech_id},</if>
+     publishTime = sysdate()
+    </set>
+    where serviceItem_id = #{serviceItem_id}
+  </update>
+
+  <select id="selectServiceitemList" parameterType="Long" resultMap="ServiceitemResult">
+    <include refid="selectServiceitemVo" />
+    <where>
+      <if test="serviceName != null and serviceName != ''">
+        AND serviceName like concat('%', #{serviceName}, '%')
+      </if>
+      <if test="tech_id != null and tech_id != ''">
+        AND tech_id= #{tech_id}
+      </if>
+    <if test="telphone != null and telphone != ''">
+          AND telphone like concat('%', #{telphone}, '%')
+        </if>
+    </where>
+  </select>
+
+  <select id="selectServiceitemcomList" parameterType="User" resultMap="ServiceitemResult">
+    <include refid="selectServiceitemVo" />
+    where s.com_id=#{comId}
+    <where>
+    </where>
+  </select>
+
+
+</mapper>

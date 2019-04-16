@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('设备类型列表')" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="device-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								设备类型：<select name="dtype_id" >
+									<option value="">所有</option>
+								</select>
+							</li>
+							<li>
+								设备名称：<input type="text" name="deviceName"/>
+							</li>
+							<li>
+								设备厂商：<input type="text" name="deviceSupply"/>
+							</li>
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+	        <div class="btn-group-sm" id="toolbar" role="group">
+		        <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="sourcepool:device:add">
+		            <i class="fa fa-plus"></i> 新增
+		        </a>
+		        <a class="btn btn-primary btn-edit disabled" onclick="$.operate.editFull()" shiro:hasPermission="sourcepool:device:edit">
+		            <i class="fa fa-edit"></i> 修改
+		        </a>
+		        <a class="btn btn-danger btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="sourcepool:device:remove">
+		            <i class="fa fa-remove"></i> 删除
+		        </a>
+	        </div>
+	        
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+    	</div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('sourcepool:device:edit')}]];
+        var detailsFlag = [[${@permission.hasPermi('sourcepool:device:details')}]];
+        var removeFlag = [[${@permission.hasPermi('sourcepool:device:remove')}]];
+        var prefix = ctx + "sourcepool/device";
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                modalName: "设备",
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'device_id',
+					title : '序号' ,
+                    "visible": false
+				},
+				{
+					field : 'dtype_id',
+					title : '类型'
+				},
+				{
+		            field: 'deviceName',
+		            title: '名称'
+		        }, {
+                        field: 'imgUrl',
+                        title: '图片',
+						formatter: function (data, type, row) {
+                   return  "<img  src='../img/"+ data + "'  style='width:30px;height:30px'  onclick='openImg(\"../img/"+ data + "\")'/>";
+                   }
+                    },
+
+                    {
+                        field: 'com_id',
+                        title: '公司',
+                        "visible": false
+                    },
+                    {
+                        field: 'deviceStatus',
+                        title: '状态',
+                        formatter: function (data, type, row) {
+                            if (data == 0) {
+                                return '空闲';
+                            } else {
+                                return '占用';
+                            }
+                        }
+                    },
+                    {
+                        field: 'devicePrice',
+                        title: '原价'
+                    },
+                    {
+                        field: 'deviceSupply',
+                        title: '厂商'
+                    },
+                    {
+                        field : 'deviceSize',
+                        title : '规格',
+                        "visible": false
+                    },
+                    {
+                        field: 'testContent',
+                        title: '检测内容',
+                        "visible": false
+                    },
+                    {
+                        field: 'tAbli_id',
+                        title: '能力',
+                        "visible": false
+                    },
+                    {
+                        field: 'buyTime',
+                        title: '录入时间'
+                    },
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.editFull(\'' + row.device_id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.device_id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="#" onclick="authDataScope(\'' + row.device_id + '\')"><i class="fa fa-check-square-o"></i>详情</a> ');
+                        return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+
+        /* 查看更多的设备信息 */
+        function authDataScope(roleId) {
+            var url = prefix + '/details/' + roleId;
+            $.modal.open("设备详情", url);
+        }
+
+        function openImg(url) {
+            layer.open({
+                type: 1,
+                title: ['设备图片'],
+                shadeClose: true,
+                area: ['400px', '400px'], //宽高
+                content: '<img src="' + url + '" height="auto" width="400px">'
+            });
+        }
+        function hoverOpenImg(){
+            var img_show = null; // tips提示
+            $('td img').hover(function(){
+                //alert($(this).attr('src'));
+                var img = "<img class='img_msg' src='"+$(this).attr('src')+"' style='width:130px;' />";
+                img_show = layer.tips(img, this,{
+                    tips:[2, 'rgba(41,41,41,.5)']
+                    ,area: ['160px']
+                });
+            },function(){
+                layer.close(img_show);
+            });
+            $('td img').attr('style','max-width:70px');
+        }
+    </script>
+</body>
+</html>

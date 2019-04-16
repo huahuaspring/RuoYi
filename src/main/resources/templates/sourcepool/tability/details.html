@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('修改通知公告')" />
+	<th:block th:include="include :: summernote-css" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m" id="form-tability-details" th:object="${tability}">
+		<input id="tAbility_id" name="tAbility_id" th:field="*{tAbility_id}"  type="hidden">
+		<div class="form-group">
+			<label class="col-sm-3 control-label">尺寸范围：</label>
+			<div class="col-sm-8">
+				<input id="sizeRange" name="sizeRange"  th:field="*{sizeRange}" class="form-control" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">检测材质：</label>
+			<div class="col-sm-8">
+				<input id="materialKind" name="materialKind" th:field="*{materialKind}" class="form-control"></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">主要标准：</label>
+			<div class="col-sm-8">
+				<textarea id="mainStandard" name="mainStandard" th:field="*{mainStandard}"  class="form-control" type="text" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">其他标准：</label>
+			<div class="col-sm-8">
+				<textarea id="otherStandard" name="otherStandard" th:field="*{otherStandard}"   class="form-control"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">其他信息：</label>
+			<div class="col-sm-8">
+				<input id="otherinfo" name="otherinfo" class="form-control" th:field="*{otherinfo}" type="text" required>
+			</div>
+		</div>
+
+	</form>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: summernote-js" />
+<script type="text/javascript">
+    var prefix = ctx + "sourcepool/tability";
+    $(function() {
+        var s=document.getElementById('imgUrl').value;
+        alert(s);
+        document.getElementById('src').src ="../img/"+s;
+    })
+
+    $("#form-tability-details").validate({
+        focusCleanup: true
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.sourcepool.device.mapper.DeviceMapper">
+  <resultMap id="DeviceResult" type="Device">
+
+    <id column="dtype_id" jdbcType="BIGINT" property="dtype_id" />
+    <result column="deviceName" jdbcType="VARCHAR" property="deviceName" />
+    <result column="deviceDesc" jdbcType="VARCHAR" property="deviceDesc" />
+    <result column="deviceStatus" jdbcType="INTEGER" property="deviceStatus" />
+    <result column="devicePrice" jdbcType="DOUBLE" property="devicePrice" />
+    <result column="imgUrl" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="buyTime" jdbcType="TIMESTAMP" property="buyTime" />
+    <result column="registerTime" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="deviceSupply" jdbcType="VARCHAR" property="deviceSupply" />
+    <result column="dtype_id" jdbcType="VARCHAR" property="dtype_id" />
+    <result column="deviceSize" jdbcType="VARCHAR" property="deviceSize" />
+    <result column="com_id" jdbcType="BIGINT" property="com_id" />
+    <result column="tAbli_id" jdbcType="BIGINT" property="tAbli_id" />
+    <result column="testContent" jdbcType="VARCHAR" property="testContent" />
+  </resultMap>
+  <sql id="selectDeviceVo">
+    select d.device_id,d.dtype_id, d.deviceName, d.deviceDesc, d.deviceStatus, d.devicePrice, d.imgUrl, d.buyTime, d.registerTime,
+    d.deviceSupply, d.dtype_id, d.deviceSize, d.com_id, d.tAbli_id, d.testContent
+    from t_device d
+  </sql>
+  
+  <select id="selectDeviceById" parameterType="Long" resultMap="DeviceResult">
+    <include refid="selectDeviceVo" />
+    where device_id= #{device_id}
+  </select>
+
+  <select id="selectDeviceList" parameterType="Long" resultMap="DeviceResult">
+    <include refid="selectDeviceVo" />
+    <where>
+      <if test="deviceName != null and deviceName != ''">
+        AND deviceName like concat('%', #{deviceName}, '%')
+      </if>
+      <if test="dtype_id != null and dtype_id != ''">
+        AND dtype_id= #{dtype_id}
+      </if>
+      <if test="deviceSupply != null and deviceSupply != ''">
+        AND deviceSupply like concat('%', #{deviceSupply}, '%')
+      </if>
+    </where>
+  </select>
+
+  <select id="selectDevicecomList" parameterType="User" resultMap="DeviceResult">
+    <include refid="selectDeviceVo" />
+    where com_id=#{comId}
+   <!-- <where>
+      <if test="deviceName != null and deviceName != ''">
+        AND deviceName like concat('%', #{deviceName}, '%')
+      </if>
+      <if test="dtype_id != null and dtype_id != ''">
+        AND dtype_id= #{dtype_id}
+      </if>
+      <if test="deviceSupply != null and deviceSupply != ''">
+        AND deviceSupply like concat('%', #{deviceSupply}, '%')
+      </if>
+    </where>-->
+  </select>
+
+  <delete id="deleteDeviceById" parameterType="Long">
+    delete from t_device
+    where device_id= #{device_id}
+  </delete>
+
+  <delete id="deleteDeviceByIds" parameterType="String">
+    delete from t_device where device_id in
+    <foreach item="device_id" collection="array" open="(" separator="," close=")">
+      #{device_id}
+    </foreach>
+  </delete>
+  
+  <insert id="insertDevice" parameterType="Device">
+    insert into t_device (
+    <if test="deviceName != null and deviceName != '' ">deviceName, </if>
+    <if test="deviceDesc != null and deviceDesc != '' ">deviceDesc, </if>
+    <if test="deviceStatus != null and deviceStatus != '' ">deviceStatus, </if>
+    <if test="devicePrice != null and devicePrice != '' ">devicePrice, </if>
+    <if test="imgUrl!= null and imgUrl!= ''">imgUrl,</if>
+    <if test="buyTime != null and buyTime != ''">buyTime,</if>
+    <if test="deviceSupply != null and deviceSupply != ''">deviceSupply,</if>
+    <if test="deviceSize!= null and deviceSize!= ''">deviceSize,</if>
+    <if test="dtype_id != null and dtype_id != ''">dtype_id,</if>
+    <if test="com_id != null and com_id != ''">com_id,</if>
+    <if test="tAbli_id!= null and tAbli_id!= ''">tAbli_id,</if>
+    <if test="testContent != null and testContent != ''">testContent,</if>
+    registerTime
+    )
+    values (
+    <if test="deviceName != null and deviceName != '' ">#{deviceName}, </if>
+    <if test="deviceDesc != null and deviceDesc != '' ">#{deviceDesc},  </if>
+    <if test="deviceStatus != null and deviceStatus != '' ">#{deviceStatus}, </if>
+    <if test="devicePrice != null and devicePrice != '' "> #{devicePrice}, </if>
+    <if test="imgUrl!= null and imgUrl!= ''"> #{imgUrl}, </if>
+    <if test="buyTime != null and buyTime != ''">  #{buyTime}, </if>
+    <if test="deviceSupply != null and deviceSupply != ''">#{deviceSupply}, </if>
+    <if test="deviceSize!= null and deviceSize!= ''">#{deviceSize},</if>
+    <if test="dtype_id != null and dtype_id != ''">#{dtype_id},</if>
+    <if test="com_id != null and com_id != ''">#{com_id}, </if>
+    <if test="tAbli_id!= null and tAbli_id!= ''">  #{tAbli_id},</if>
+    <if test="testContent != null and testContent != ''">#{testContent},</if>
+    sysdate()
+    )
+  </insert>
+ 
+  <update id="updateDevice" parameterType="Device">
+    update t_device
+    <set>
+      <if test="deviceName != null and deviceName != '' ">deviceName=#{deviceName}, </if>
+      <if test="deviceDesc != null and deviceDesc != '' ">deviceDesc=#{deviceDesc},  </if>
+      <if test="deviceStatus != null and deviceStatus != '' ">deviceStatus=#{deviceStatus}, </if>
+      <if test="devicePrice != null and devicePrice != '' "> devicePrice=#{devicePrice}, </if>
+      <if test="imgUrl!= null and imgUrl!= ''"> imgUrl=#{imgUrl}, </if>
+      <if test="buyTime != null and buyTime != ''">  buyTime=#{buyTime}, </if>
+      <if test="deviceSupply != null and deviceSupply != ''">deviceSupply=#{deviceSupply}, </if>
+      <if test="deviceSize!= null and deviceSize!= ''">deviceSize=#{deviceSize},</if>
+      <if test="dtype_id != null and dtype_id != ''">dtype_id=#{dtype_id},</if>
+      <if test="com_id != null and com_id != ''">com_id=#{com_id}, </if>
+      <if test="tAbli_id!= null and tAbli_id!= ''"> tAbli_id= #{tAbli_id},</if>
+      <if test="testContent != null and testContent != ''">testContent=#{testContent},</if>
+      registerTime= sysdate()
+    </set>
+    where device_id= #{device_id}
+  </update>
+
+</mapper>

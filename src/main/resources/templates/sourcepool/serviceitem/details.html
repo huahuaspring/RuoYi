@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('设备详细信息')" />
+	<th:block th:include="include :: summernote-css" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m" id="form-serviceitem-details" th:object="${serviceitem}">
+		<input id="serviceItem_id" name="serviceItem_id" th:field="*{serviceItem_id}"  type="hidden">
+		<div class="form-group">
+			<label class="col-sm-3 control-label">检测项名称：</label>
+			<div class="col-sm-8">
+				<input id="serviceName" class="form-control" name="serviceName" th:field="*{serviceName}" ></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">设备类型：</label>
+			<div class="col-sm-8">
+				<input id="device_id" name="device_id" th:field="*{device_id}" class="form-control" type="text" required>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">检测范围：</label>
+			<div class="col-sm-8">
+				<input id="tAbli_id" name="tAbli_id" th:field="*{tAbli_id}" class="form-control"></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">联系电话：</label>
+			<div class="col-sm-8">
+				<input id="telphone" name="telphone" th:field="*{telphone}" class="form-control" type="text" required></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">团队构成：</label>
+			<div class="col-sm-8">
+				<textarea  th:field="*{techteam.teamStructure}" style="height: 100px" class="form-control" type="text" required></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">核心技术：</label>
+			<div class="col-sm-8">
+				<textarea  th:field="*{techteam.expertiseTechnology}" style="height: 100px" class="form-control" type="text" required></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">支撑平台：</label>
+			<div class="col-sm-8">
+				<input  th:field="*{techteam.supportPlatform}" class="form-control" type="text" required></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">其他信息：</label>
+			<div class="col-sm-8">
+				<textarea  th:field="*{techteam.notes}" style="height: 100px" class="form-control" type="text" required></textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: summernote-js" />
+<script type="text/javascript">
+    var prefix = ctx + "sourcepool/serviceitem";
+    $("#form-serviceitem-details").validate({
+        focusCleanup: true
+    });
+</script>
+</body>
+</html>

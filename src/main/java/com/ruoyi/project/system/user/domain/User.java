@@ -24,6 +24,10 @@ public class User extends BaseEntity
     @Excel(name = "用户序号", prompt = "用户编号")
     private Long userId;
 
+    /** 公司ID */
+    @Excel(name = "公司编号", type = Type.IMPORT)
+    private Long comId;
+
     /** 部门ID */
     @Excel(name = "部门编号", type = Type.IMPORT)
     private Long deptId;
@@ -221,6 +225,14 @@ public class User extends BaseEntity
         this.salt = salt;
     }
 
+    public Long getComId() {
+        return comId;
+    }
+
+    public void setComId(Long comId) {
+        this.comId = comId;
+    }
+
     /**
      * 生成随机盐
      */
@@ -339,6 +351,7 @@ public class User extends BaseEntity
             .append("updateTime", getUpdateTime())
             .append("remark", getRemark())
             .append("dept", getDept())
+            .append("comId",getComId())
             .toString();
     }
 }

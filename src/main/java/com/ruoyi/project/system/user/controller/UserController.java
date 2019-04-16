@@ -2,6 +2,7 @@ package com.ruoyi.project.system.user.controller;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -50,10 +51,21 @@ public class UserController extends BaseController
         return prefix + "/user";
     }
 
+    @RequiresRoles("admin")
     @RequiresPermissions("system:user:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(User user)
+    {
+        startPage();
+        List<User> list = userService.selectUserList(user);
+        return getDataTable(list);
+    }
+
+    @RequiresPermissions("system:user:list")
+    @PostMapping("/list_com")
+    @ResponseBody
+    public TableDataInfo list_com(User user)
     {
         startPage();
         List<User> list = userService.selectUserList(user);

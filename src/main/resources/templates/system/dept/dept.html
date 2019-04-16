@@ -57,7 +57,7 @@
 		        code: "deptId",
 		        parentCode: "parentId",
 		        uniqueId: "deptId",
-		        url: prefix + "/list",
+		        url: prefix + "/list_com",
 		        createUrl: prefix + "/add/{id}",
 		        updateUrl: prefix + "/edit/{id}",
 		        removeUrl: prefix + "/remove/{id}",
@@ -75,7 +75,11 @@
 		            field: 'orderNum',
 		            title: '排序',
 		            align: "left"
-		        },
+		        }, {
+                        field: 'comId',
+                        title: '公司',
+                        align: "left"
+                    },
 		        {
 		            field: 'status',
 		            title: '状态',

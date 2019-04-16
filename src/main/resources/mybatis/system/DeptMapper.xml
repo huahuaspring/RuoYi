@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Dept" id="DeptResult">
 		<id     property="deptId"     column="dept_id"     />
 		<result property="parentId"   column="parent_id"   />
+		<result property="comId"   column="comId"   />
 		<result property="ancestors"  column="ancestors"   />
 		<result property="deptName"   column="dept_name"   />
 		<result property="orderNum"   column="order_num"   />
@@ -22,8 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="updateTime" column="update_time" />
 	</resultMap>
 	
-	<sql id="selectDeptVo">
-        select d.dept_id, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.phone, d.email, d.status, d.del_flag, d.create_by, d.create_time 
+	<sql id="selectDeptVo" >
+        select d.dept_id,d.comId, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.phone, d.email, d.status, d.del_flag, d.create_by, d.create_time
         from sys_dept d
     </sql>
     
@@ -51,6 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${params.dataScope}
 		order by d.order_num
     </select>
+
+	<select id="selectDeptList_com"  parameterType="Long" resultMap="DeptResult">
+		select d.dept_id,d.comId, d.parent_id, d.ancestors, d.dept_name, d.order_num, d.leader, d.phone, d.email, d.status, d.del_flag, d.create_by, d.create_time
+		from sys_dept d
+		where d.comId =#{comId}
+	</select>
 	
 	<select id="checkDeptExistUser" parameterType="Long" resultType="int">
 		select count(1) from sys_user where dept_id = #{deptId} and del_flag = '0'
@@ -87,6 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="email != null and email != ''">email,</if>
  			<if test="status != null">status,</if>
  			<if test="createBy != null and createBy != ''">create_by,</if>
+		     comId,
  			create_time
  		)values(
  			<if test="deptId != null and deptId != 0">#{deptId},</if>
@@ -99,7 +107,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="email != null and email != ''">#{email},</if>
  			<if test="status != null">#{status},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>
- 			sysdate()
+		ShiroUtils.getSysUser().getComId(),
+		sysdate()
  		)
 	</insert>
 	
@@ -117,7 +126,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
  			update_time = sysdate()
  		</set>
- 		where dept_id = #{deptId}
+ 		where dept_id = #{deptId} and comID=ShiroUtils.getSysUser().getComId()
 	</update>
 	
 	<update id="updateDeptChildren" parameterType="java.util.List">

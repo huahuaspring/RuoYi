@@ -4,6 +4,7 @@ import java.util.List;
 import com.ruoyi.framework.web.domain.Ztree;
 import com.ruoyi.project.system.dept.domain.Dept;
 import com.ruoyi.project.system.role.domain.Role;
+import com.ruoyi.project.system.user.domain.User;
 
 /**
  * 部门管理 服务层
@@ -27,6 +28,22 @@ public interface IDeptService
      * @return 所有部门信息
      */
     public List<Ztree> selectDeptTree(Dept dept);
+
+    /**
+     * 查询公司部门管理数据
+     *
+     * @param comId 部门信息
+     * @return 部门信息集合
+     */
+    public List<Dept> selectDeptList_com(Long comId);
+
+    /**
+     * 查询公司部门管理树
+     *
+     * @param comId 部门信息
+     * @return 所有部门信息
+     */
+   /* public List<Ztree> selectDeptTree_com(Long comId);*/
 
     /**
      * 根据角色ID查询菜单

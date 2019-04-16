@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('检测能力列表')" />
+</head>
+<body class="gray-bg">
+    <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="tAbility-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								尺寸范围：<select name="sizeRange" >
+									<option value="">所有</option>
+								</select>
+							</li>
+							<li>
+								检测材质：<input type="text" name="mainStandard"/>
+							</li>
+							<li>
+								主要标准：<input type="text" name="otherStandard"/>
+							</li>
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+	        <div class="btn-group-sm" id="toolbar" role="group">
+		        <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="sourcepool:tAbility:add">
+		            <i class="fa fa-plus"></i> 新增
+		        </a>
+		        <a class="btn btn-primary btn-edit disabled" onclick="$.operate.editFull()" shiro:hasPermission="sourcepool:tAbility:edit">
+		            <i class="fa fa-edit"></i> 修改
+		        </a>
+		        <a class="btn btn-danger btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="sourcepool:tAbility:remove">
+		            <i class="fa fa-remove"></i> 删除
+		        </a>
+	        </div>
+	        
+	        <div class="col-sm-12 select-table table-striped">
+	            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+	        </div>
+    	</div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('sourcepool:tAbility:edit')}]];
+        var detailsFlag = [[${@permission.hasPermi('sourcepool:tAbility:details')}]];
+        var removeFlag = [[${@permission.hasPermi('sourcepool:tAbility:remove')}]];
+        var prefix = ctx + "sourcepool/tability";
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                modalName: "检测能力",
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'tAbility_id',
+					title : '序号' ,
+                    "visible": false
+				},
+				{
+					field : 'sizeRange',
+					title : '尺寸'
+				}, {
+                        field : 'materialKind',
+                        title : '材质'
+                    },
+                    {
+                        field : 'com_id',
+                        title : '公司',
+                        "visible": false
+                    },
+				{
+		            field: 'mainStandard',
+		            title: '主要标准'
+		        },
+                    {
+                        field: 'otherStandard',
+                        title: '次要标准',
+                        "visible": false
+                    },
+                    {
+                        field: 'otherinfo',
+                        title: '其他信息',
+                        "visible": false
+                    },
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.editFull(\'' + row.tAbility_id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.tAbility_id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="#" onclick="authDataScope(\'' + row.tAbility_id + '\')"><i class="fa fa-check-square-o"></i>详情</a> ');
+                        return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+
+        /* 查看更多的设备信息 */
+        function authDataScope(id) {
+            var url = prefix + '/details/' + id;
+            $.modal.open("设备详情", url);
+        }
+    </script>
+</body>
+</html>
