@@ -25,6 +25,11 @@
       </if>
     </where>
   </select>
+
+  <select id="selectDtypecomList" parameterType="User" resultMap="DtypeResult">
+    <include refid="selectDtypeVo"/>
+     where com_id=#{comId}
+  </select>
   <select id="selectDtypeById" parameterType="Long" resultMap="DtypeResult">
     <include refid="selectDtypeVo" />
     where dtype_id = #{dtype_id}

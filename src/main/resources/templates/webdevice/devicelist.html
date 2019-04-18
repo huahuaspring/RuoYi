@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>hover</title>
+		<meta name="description" content="">
+        <meta name="keyword" content="">
+		<link href="../static/css/resetsearch.css" th:href="@{/css/resetsearch.css}" rel="stylesheet"/>
+		<link href="../static/css/stylesearch.css" th:href="@{/css/stylesearch.css}" rel="stylesheet"/>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		
+		<!--[if lt IE 9]>
+        <script th:src="@{/js/html5.min.js}"></script>
+        <![endif]-->
+	</head>
+	<body>
+	<div class="row  border-bottom white-bg dashboard-header" style="height:100px">
+		<iframe class="RuoYi_iframe" name="iframe0" width="100%" height="60%" data-id="/webindex/titletop"
+				th:src="@{/webindex/titletop}" frameborder="0" seamless></iframe>
+	</div>
+
+	<iframe class="RuoYi_iframe" name="iframe1"  width="100%" height="200px" data-id="/webindex/searchlist"
+				th:src="@{/webindex/searchlist}" frameborder="0" seamless></iframe>
+
+	<iframe class="RuoYi_iframe" name="iframe2"  width="100%" height="500px" data-id="/webindex/index"
+			th:src="@{/webindex/index}" frameborder="0" seamless></iframe>
+
+
+
+	</body>
+	<script th:src="@{/js/getHover.js}"></script>
+	<script>
+		$(function(){
+              $.centerSlide();//中间centerSlide部分的hover
+        });
+	</script>
+	
+</html>
+

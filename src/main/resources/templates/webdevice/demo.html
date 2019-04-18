@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>多维条件过滤</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/stylesearch.css}">
+
+<script type="text/javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+	<ul class="select" >
+		<li class="select-list">
+			<dl id="select1">
+				<dt>设备类型：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">气密性检测设备</a></dd>
+				<dd><a href="#">包装检测设备</a></dd>
+				<dd><a href="#">重金属检测设备</a></dd>
+				<dd><a href="#">重量检测设备</a></dd>
+				<dd><a href="#">底盘检测设备</a></dd>
+				<dd><a href="#">发动机检测设备</a></dd>
+				<dd><a href="#">汽车整车性能检测</a></dd>
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select2">
+				<dt>所属地区：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">成都</a></dd>
+				<dd><a href="#">绵阳</a></dd>
+				<dd><a href="#">德阳</a></dd>
+				<dd><a href="#">自贡</a></dd>
+				<dd><a href="#">资阳</a></dd>
+				<dd><a href="#">南充</a></dd>
+				<dd><a href="#">遂宁</a></dd>
+				<dd><a href="#">雅安</a></dd>
+				<dd><a href="#">宜宾</a></dd>
+				<dd><a href="#">广元</a></dd>
+				<dd><a href="#">达州</a></dd>
+				<dd><a href="#">泸州</a></dd>
+				<dd><a href="#">攀枝花</a></dd>
+
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select3">
+				<dt>所属单位：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">中国工程物理研究院</a></dd>
+				<dd><a href="#">四川大学</a></dd>
+				<dd><a href="#">电子科技大学</a></dd>
+				<dd><a href="#">西南交通大学</a></dd>
+				<dd><a href="#">四川省分析测试中心</a></dd>
+				<dd><a href="#">宁江山川机械有限公司</a></dd>
+				<dd><a href="#">四川省安全技术研究院</a></dd>
+			</dl>
+		</li>
+		<li class="select-list">
+			<dl id="select4">
+				<dt>价格区间：</dt>
+				<dd class="select-all selected"><a href="#">全部</a></dd>
+				<dd><a href="#">100以下</a></dd>
+				<dd><a href="#">100/h-200/h</a></dd>
+				<dd><a href="#">200/h-300/h</a></dd>
+				<dd><a href="#">300/h-400/h</a></dd>
+				<dd><a href="#">400/h-600/h</a></dd>
+				<dd><a href="#">600/h-800/h</a></dd>
+				<dd><a href="#">大于800</a></dd>
+			</dl>
+		</li>
+		<li class="select-result">
+			<dl>
+				<dt>已选条件：</dt>
+				<dd class="select-no">暂时没有选择过滤条件</dd>
+			</dl>
+		</li>
+	</ul>
+
+</body>
+</html>

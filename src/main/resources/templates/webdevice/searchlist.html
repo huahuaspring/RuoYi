@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>hover</title>
+		<meta name="description" content="">
+        <meta name="keyword" content="">
+		<link href="../static/css/resetsearch.css" th:href="@{/css/resetsearch.css}" rel="stylesheet"/>
+		<link href="../static/css/stylesearch.css" th:href="@{/css/stylesearch.css}" rel="stylesheet"/>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		
+		<!--[if lt IE 9]>
+        <script th:src="@{/js/html5.min.js}"></script>
+        <![endif]-->
+	</head>
+	<body>
+	  	<!-- cpmContent start-->
+	  	  	 <div class="centerHover cl">
+			    <div class="row cl inactive" >
+				   <h5 data-role="1" >仪器类型</h5>
+				   <ul>
+					   <li data-role="2"><a href="#">资源管理</a></li>
+					   <li data-role="3"><a href="#">客户服务</a></li>
+					   <li data-role="4"><a href="#">招租平台</a></li>
+					   <li data-role="2"><a href="#">资源管理</a></li>
+					   <li data-role="3"><a href="#">客户服务</a></li>
+					   <li data-role="4"><a href="#">招租平台</a></li>
+					   <li data-role="4"><a href="#">招租平台</a></li>
+					   <li data-role="2"><a href="#">资源管理</a></li>
+					   <li data-role="3"><a href="#">客户服务</a></li>
+					   <li data-role="4"><a href="#">招租平台</a></li>
+
+				   </ul>
+			    </div>
+			    <div class="row cl normal">
+				   <h5 data-role="1" >所在地区</h5>
+				   <ul>
+					   <li data-role="2"><a href="#">商业资源管理</a></li>
+					   <li data-role="3"><a href="#">商业运营管理</a></li>
+					   <li data-role="4"><a href="#">客户关系管理</a></li>
+					   <li data-role="5"><a href="#">O2O方案</a></li>
+				   </ul>
+			    </div>
+			    <div class="row cl normal">
+				   <h5 data-role="1" >所属单位</h5>
+				   <ul>
+					   <li data-role="2"><a href="#">商业资源管理</a></li>
+					   <li data-role="3"><a href="#">客户关系管理</a></li>
+					   <li data-role="4"><a href="#">智能收银</a></li>
+				   </ul>
+			    </div>
+			    <div class="row cl normal row-end">
+				   <h5 data-role="1" >试验名称</h5>
+				   <ul>
+					   <li data-role="2"><a href="#">招商平台</a></li>
+					   <li data-role="3"><a href="#">商户服务平台</a></li>
+					   <li data-role="4"><a href="#">精准营销平台</a></li>
+				   </ul>
+			    </div>
+		     </div>
+
+		<!-- cpmContent end-->
+	</body>
+	<script th:src="@{/js/getHover.js}"></script>
+	<script>
+		$(function(){
+			
+              $.centerSlide();//中间centerSlide部分的hover
+             
+        });
+	</script>
+	
+</html>
+

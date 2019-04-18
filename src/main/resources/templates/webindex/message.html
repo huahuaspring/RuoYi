@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<body  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>学校新闻</title>
+    <link rel="shortcut icon" href="favicon.ico">
+	<link href="../static/css/style(new).css" th:href="@{/css/style(new).css}" rel="stylesheet"/>
+</head>
+
+<div class="bg-grey">
+	<div class="content">
+		<div class="tab-block information-tab">
+			<div class="tab-buttons ">
+				<h3 class="tab-button cur" data-tab="one">平台新闻</h3>
+				<h3 class="tab-button" data-tab="two">行业新闻</h3>
+				<h3 class="tab-button" data-tab="three">通知公告 <span class="question-icon"></span></h3>
+			</div>
+			<div class="tabs">
+				<div class="tab-item active" id="tab-one">
+					<div class="information-tab">
+
+						<div class="information-left">
+							<a href="#">
+								<img  th:src="@{/img/new2.jpg}" width="400" height="340" alt="教育部新闻发布会">
+							</a>
+							<div class="left-bottom">
+								<div class="article-title">成都市2019年度高新技术企业申报认定培训会</div>
+								<div class="article-time">
+									[03-14 ]
+								</div>
+							</div>
+						</div>
+						<div class="information-right">
+							<div class="article-list current">
+								<a href="#" class="article-link">
+									<div class="article-head">
+										<span class="article-number">1</span>
+										<span class="article-title">整合科技资源 推动共享服务</span>
+										<span class="article-time">[03-21]</span>
+									</div>
+									<div class="article-content">
+										<p>2018年9月27日，四川省重大科研基础设施和大型科研仪器入网共享工作培训会在成都顺利召开。会议由四川省分析测试服务中心主任耿萌辉主持，四川省科学技术厅条财处副处长王雄武出席并讲话。来自109家高校、科研院所的152名代表参加了此次会议。</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">2</span>
+										<span class="article-title">调研军民融合大仪平台</span>
+										<span class="article-time">[03-26]</span>
+									</div>
+									<div class="article-content">
+										<p>3月22日，四川省科技厅基础研究处调研员刘松、四川省重大科研基础设施与大型科研仪器共享平台（以下简称“省大仪平台”）主任耿萌辉前往四川军民融合大型科学仪器共享平台（以下简称“军民融合大仪平台”）调研。</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">3</span>
+										<span class="article-title">平台应邀参加成都市2019年度高新技术企业申报认定培训会</span>
+										<span class="article-time">[03-11]</span>
+									</div>
+									<div class="article-content">
+										<p>3月14日，成都市2019年度高新技术企业申报认定培训会（以下简称培训会）在高新区孵化园成功举行。会议由科技厅指导，成都市科学技术局主办，成都高新技术创业服务中心承办，共计400余家企业500余人参会。我平台应邀参加了此次会议。</p>
+										</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">4</span>
+										<span class="article-title">创新引领科技发展 大数据主推资源共享—第三届长江经济带科技资源共享论坛在贵阳举行</span>
+										<span class="article-time">[03-26]</span>
+									</div>
+									<div class="article-content">
+										<p>第三届长江经济带科技资源共享论坛在贵阳举行。来自科技部、长江经济带11省市科技管理部门、论坛理事单位、特邀省市以及有关高校、院所、企业的专家、学者、代表参加了此次论坛大会。</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">5</span>
+										<span class="article-title">国家市场监管总局通报10起认证检测市场典型案件</span>
+										<span class="article-time">[03-24]</span>
+									</div>
+									<div class="article-content">
+										<p>全国市场监管系统对认证检测市场集中开展整治行动。国家市场监管总局24日通报了在整治行动中查处的10起典型案件。这10起典型案件包括：全国认证服务（中国）有限公司非法开展认证活动、深圳中大国际认证公司和上海色瑞斯认证公司出具虚假认证结论、
+											江苏宏强电气集团有限公司和温州市美瑞凯宠物用品有限公司出厂销售未经认证的CCC产品、南宁市杰锋汽车检测有限公司出具虚假检测结果、江西欧兰宝检测技术有限公司伪造环境监测数据、滨州市通九州机动车检测有限公司等4家检测机构骗取资质认定证书、北京中鼎恒昌认证公司和青岛欧检认证检验公司认证人员弄虚作假等。</p>
+									</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="tab-item" id="tab-two">
+					<div class="information-tab ">
+
+						<div class="information-left">
+							<a href="#">
+						<img  th:src="@{/img/new1.jpg}"  width="500" height="340" alt="调研军民融合大仪平台">
+							</a>
+							<div class="left-bottom">
+								<div class="article-title">调研军民融合大仪平台</div>
+								<div class="article-time">
+									[02-27 ]
+								</div>
+							</div>
+						</div>
+						<div class="information-right">
+							<div class="article-list current">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">1</span>
+										<span class="article-title">CNAS-CL01：2018《检测和校准实验室能力认可准则》正式实施</span>
+										<span class="article-time">[4-05]</span>
+									</div>
+									<div class="article-content">
+										<p>中国合格评定国家认可委员会（CNAS）正式发布CNAS-CL01：2018《检测和校准实验室能力认可准则》及相关的应用说明文件，用以取代旧版及相关文件。</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">2</span>
+										<span class="article-title">新版计量认证CMA认证规则RB/T 214-2017正式实施</span>
+										<span class="article-time">[03-01]</span>
+									</div>
+									<div class="article-content">
+										<p>  国家认监委2018年颁布国认实〔2018〕28号 国家认监委《关于检验检测机构资质认定工作采用相关认证认可行业标准的通知》，
+											要求从6月1日起启用《检验检测机构资质认定能力评价　检验检测机构通用要求》(RB/T 214-2017)，替代2016年5月31日国家认监委印发的《国家认监委关于印发<检验检测机构资质认定评审准则>及释义》。
+										</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">3</span>
+										<span class="article-title">京津冀三地科技创新券实现互认互通</span>
+										<span class="article-time">[02-28]</span>
+									</div>
+									<div class="article-content">
+										<p> 7月20日，京津冀三地科技、财政主管部门在北京签署合作协议，
+											正式启动科技创新券互认互通。京津冀三地在2014-2017年度的创新券工作实施中，
+											共计投入1.4亿元创新券资金支持了2115家小微企业和111家创业团队，合作开展了2402个创新券项目。
+										</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">4</span>
+										<span class="article-title">检验检测认证服务正式写入《战略性新兴产业分类（2018）》</span>
+										<span class="article-time">[03-10]</span>
+									</div>
+									<div class="article-content">
+										<p>据国家统计局权威发布《战略性新兴产业分类（2018）》（国家统计局令第23号）获悉。根据《国务院关于加快培育和发展战略性新兴产业的决定》（国发〔2010〕32号）的要求，为准确反映“十三五”国家战略性新兴产业发展规划情况，满足统计上测算战略性新兴产业发展规模、结构和速度的需要，制定本分类。其中，检验检测认证、标准化服务已被正式写入分类。</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">5</span>
+										<span class="article-title"> 《关于加强认证检测市场监管工作的通知》发布</span>
+										<span class="article-time">[03-18]</span>
+									</div>
+									<div class="article-content">
+										<p>市场监管总局、认监委召开专题新闻发布会，向社会发布认证检测市场专项整治情况。从发布会上获悉，市场监管总局成立以来，将治理“认证检测乱象”作为加强市场监管工作的一项重点任务。</p>
+									</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="tab-item" id="tab-three">
+					<div class="information-tab ">
+
+						<div class="information-left">
+							<a href="#">
+								<img th:src="@{/img/new3.jpg}" width="500" height="340" alt="本校评奖、评优、违规、违纪通报">
+							</a>
+							<div class="left-bottom">
+								<div class="article-title">平台相关法律法规查询链接</div>
+								<div class="article-time">
+									[12-04 ]
+								</div>
+							</div>
+						</div>
+						<div class="information-right">
+							<div class="article-list current">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">1</span>
+										<span class="article-title">2018年中国第三方检测行业集中度及发展趋势分析</span>
+										<span class="article-time">[3-07]</span>
+									</div>
+									<div class="article-content">
+										<p>http://www.chyxx.com/industry/201808/669369.html</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">2</span>
+										<span class="article-title">检验检测服务平台使用须知</span>
+										<span class="article-time">[03-11]</span>
+									</div>
+									<div class="article-content">
+										<p></p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">3</span>
+										<span class="article-title">检验检测服务平台用户手册</span>
+										<span class="article-time">[03-20]</span>
+									</div>
+									<div class="article-content">
+										<p></p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">4</span>
+										<span class="article-title">检验检测服务平台对违规行为处理规定</span>
+										<span class="article-time">[03-26]</span>
+									</div>
+									<div class="article-content">
+										<p>检验检测机构未依法取得资质认定，擅自向社会出具具有证明作用数据、结果的，由县级以上质量技术监督部门责令改正，处3万元以下罚款。
+											第四十二条 检验检测机构有下列情形之一的，由县级以上质量技术监督部门责令其1个月内改正;逾期未改正或者改正后仍不符合要求的，处1万元以下罚款：</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="article-list ">
+								<a href="#" class="article-link">
+									<div class="article-head ">
+										<span class="article-number">5</span>
+										<span class="article-title">检验检测相关法规链接 </span>
+										<span class="article-time">[04-01]</span>
+									</div>
+									<div class="article-content">
+										<p>http://www.sohu.com/a/139767703_505812</p>
+									</div>
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script th:src="@{/js/jquery-1.11.0.js}"></script>
+<script type="text/javascript">
+    //tab切换
+    $('.tab-button').click(function() {
+        var tab = $(this).data('tab')
+        $(this).addClass('cur').siblings('.tab-button').removeClass('cur');
+        $('#tab-' + tab + '').addClass('active').siblings('.tab-item').removeClass('active');
+    });
+    //新闻列表切换
+    $('.information-tab .article-list').hover(function() {
+        $(this).addClass('current').siblings('.article-list').removeClass('current');
+    }, function() {
+        $(this).parent('.information-right').find('.article-list:first-of-type').addClass('current').siblings('.article-list').removeClass('current');
+    });
+</script>
+
+
+</html>

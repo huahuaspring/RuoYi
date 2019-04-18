@@ -88,7 +88,7 @@ pagehelper:
 shiro:
   user:
     # 登录地址
-    loginUrl: /login
+    loginUrl: /webindex
     # 权限认证失败地址
     unauthorizedUrl: /unauth
     # 首页地址
@@ -119,7 +119,7 @@ xss:
   # 过滤开关
   enabled: true
   # 排除链接（多个用逗号分隔）
-  excludes: /system/notice/*
+  excludes: /system/notice/*,/system/footer/*
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*,/device/*
 

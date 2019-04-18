@@ -1,6 +1,8 @@
 package com.ruoyi.project.sourcepool.dtype.mapper;
 
 import com.ruoyi.project.sourcepool.dtype.domain.Dtype;
+import com.ruoyi.project.system.user.domain.User;
+
 import java.util.List;
 
 /**
@@ -25,7 +27,7 @@ public interface DtypeMapper
      * @return 设备类型集合
      */
     public List<Dtype> selectDtypeList(Dtype dtype);
-
+    public List<Dtype> selectDtypecomList(User user);
     /**
      * 新增设备类型
      * 

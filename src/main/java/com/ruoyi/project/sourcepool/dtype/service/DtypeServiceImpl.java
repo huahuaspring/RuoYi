@@ -5,6 +5,7 @@ import java.util.List;
 import com.ruoyi.project.sourcepool.device.service.IDeviceService;
 import com.ruoyi.project.sourcepool.dtype.domain.Dtype;
 import com.ruoyi.project.sourcepool.dtype.mapper.DtypeMapper;
+import com.ruoyi.project.system.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.utils.security.ShiroUtils;
@@ -43,6 +44,10 @@ public class DtypeServiceImpl implements IDtypeService
     public List<Dtype> selectDtypeList(Dtype dtype)
     {
         return dtypeMapper.selectDtypeList(dtype);
+    }
+    public List<Dtype> selectDtypecomList(User user)
+    {
+        return dtypeMapper.selectDtypecomList(user);
     }
 
     /**

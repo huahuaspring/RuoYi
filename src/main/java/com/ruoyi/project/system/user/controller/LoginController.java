@@ -62,4 +62,46 @@ public class LoginController extends BaseController
     {
         return "/error/unauth";
     }
+
+    @GetMapping("/webindex")
+    public String webindex()
+    {
+        return "/webindex/index";
+    }
+
+    @GetMapping("/webindex/footer")
+    public String footer()
+    {
+        return "/webindex/footer";
+    }
+
+    @GetMapping("/webindex/message")
+    public String message()
+    {
+        return "/webindex/message";
+    }
+
+    @GetMapping("/webindex/device")
+    public String device()
+    {
+        return "/webdevice/devicelist";
+    }
+
+    @GetMapping("/webindex/searchlist")
+    public String searchlist()
+    {
+        return "/webdevice/demo";
+    }
+
+    @GetMapping("/webindex/titletop")
+    public String titletop()
+    {
+        return "/webdevice/titletop";
+    }
+
+    @GetMapping("/webindex/index")
+    public String index()
+    {
+        return "/webdevice/index";
+    }
 }

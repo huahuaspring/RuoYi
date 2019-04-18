@@ -1,5 +1,6 @@
 package com.ruoyi.project.sourcepool.dtype.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.ruoyi.project.system.user.domain.User;
@@ -50,7 +51,13 @@ public class DtypeController extends BaseController
     public TableDataInfo list(Dtype dtype)
     {
         startPage();
-        List<Dtype> list = dtypeService.selectDtypeList(dtype);
+        User user=getSysUser();
+        List<Dtype> list = new LinkedList<Dtype>();
+           if(user.isAdmin()) {
+               list = dtypeService.selectDtypeList(dtype);
+           }else {
+               list = dtypeService.selectDtypecomList(user);
+           }
         return getDataTable(list);
     }
 

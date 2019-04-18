@@ -2,6 +2,7 @@ package com.ruoyi.project.sourcepool.dtype.service;
 
 
 import com.ruoyi.project.sourcepool.dtype.domain.Dtype;
+import com.ruoyi.project.system.user.domain.User;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public interface IDtypeService
      */
     public List<Dtype> selectDtypeList(Dtype dtype);
 
+    public List<Dtype> selectDtypecomList(User user);
     /**
      * 新增公告
      * 

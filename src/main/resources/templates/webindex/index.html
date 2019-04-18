@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/style1.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/stylenew.css" />
+	<link rel="stylesheet"  href="../../layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="../../css/admin.css" media="all">
+	<link rel="stylesheet" href="../../template.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../css/iconfont/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="/../../css/style(bottom).css" />
+	<link id="layuicss-layer" rel="stylesheet" href="../../layui/css/layer.css" media="all"></head>
+</head>
+<body>
+<div class="bar">
+	<div class="logo" style="color: #fff;font-size: 25px;width:300px;">
+		Test Service Paltom
+	</div>
+	<div class="bar_menu">
+		<ul>
+			<li>
+				<a href="#"><i></i>&nbsp;购物车</a>
+			</li>
+
+			<li>
+				<a href="#">联系我们</a>
+			</li>
+			<li>
+				<a href="#">个人中心</a>
+			</li>
+			<li>
+				<a href="#">登录</a>
+			</li>
+		</ul>
+	</div>
+	<div class="area">
+		<span>四川&nbsp;<i></i></span>
+		<ul>
+			<li>
+				<a href="#">
+					<span class="nav-site">北京</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">上海</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">长三角</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">哈长</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">成渝</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">京津翼</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="nav-site">港澳台</span>
+				</a>
+			</li>
+			<li class="line"></li>
+
+		</ul>
+	</div>
+	<div class="search">
+		<input type="text" name="keyword" placeholder="搜索" />
+		<div class="search_icon"></div>
+	</div>
+</div>
+<div class="nav" >
+	<ul>
+		<li>
+			<a href="#">平台简介</a>
+		</li>
+		<li>
+			<a href="#">常见问题</a>
+		</li>
+		<li>
+			<a href="#">常用链接</a>
+		</li>
+		<li>
+			<a href="#">下载专区</a>
+			<div class="son">
+
+			</div>
+
+		</li>
+		<li>
+			<a href="#">投诉建议</a>
+		</li>
+		<li>
+			<a href="#">支持与服务</a>
+		</li>
+		<li>
+			<a href="#">合作伙伴</a>
+		</li>
+	</ul>
+</div>
+
+<div class="top">
+	<div class="banner">
+	<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide blue-slide" style="background:  #3857AD;">
+					<img src="../../img/webindex/demo1.jpg" swiper-animate-effect="fadeInUp" class="ani" />
+				</div>
+				<div class="swiper-slide blue-slide" style="background: #24282c;">
+					<div class="info ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+						<h1>便捷、高效</h1>
+						<p>发布需求-最佳匹配、一站式专业检测服务</p>
+						<a href="#">了解更多-></a>
+					</div>
+					<div style="width: 250px;heigth:150px;margin-left:900px">
+						<img src="../../img/webindex/demo4.png"  swiper-animate-effect="fadeInUp"/>
+					</div>
+				</div>
+				<div class="swiper-slide blue-slide" style="background: #24282c;">
+					<div class="info ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+						<h1>安全、可靠</h1>
+						<p>检测过程可全程实时监督</p>
+						<a href="#">了解更多-></a>
+					</div>
+					<img src="../../img/webindex/demo7.jpg" swiper-animate-effect="fadeInUp" class="ani" />
+				</div>
+				<div class="swiper-slide blue-slide" style="background: #24282c;">
+					<div class="info ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+						<h1>设备先进、团队“硬”、平台大</h1>
+						<p>最高性价比、提升“核心竞争力”的有效途径</p>
+						<a href="#">了解更多-></a>
+					</div>
+					<img src="../../img/webindex/demo12.jpg" swiper-animate-effect="fadeInUp" class="ani" />
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+</div>
+
+<div class="recommend">
+	<ul>
+		<li>
+			<a href="deviceshow">
+			<img src="../../img/webindex/6.png" style="width:100px;height:100px">
+				<h2>通知公告</h2>
+			</a>
+		</li>
+		<li>
+			<a href="/webindex/device">
+			<img src="../../img/webindex/12.png" style="width:100px;height:100px">
+				<h2>仪器资源</h2>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+			<img src="../../img/webindex/14.png" style="width:100px;height:100px">
+				<h2>检测服务</h2>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+			<img src="../../img/webindex/10.png" style="width:100px;height:100px">
+				<h2>需求发布</h2>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+			<img src="../../img/webindex/5.png" style="width:100px;height:100px">
+				<h2>案例展示</h2>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+			<img src="../../img/webindex/8.png" style="width:100px;height:100px">
+				<h2>专家库</h2>
+			</a>
+		</li>
+	</ul>
+</div>
+<br>
+<div class="bg-grey" style="border:2px solid #fff;height: 600px">
+
+		<iframe class="RuoYi_iframe" name="iframe1" width="100%" height="100%" data-id="/webindex/message"
+				th:src="@{/webindex/message}" frameborder="0" seamless></iframe>
+</div>
+<div style="border:2px solid #fff;height: 600px">
+	<iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" data-id="/webindex/footer"
+			th:src="@{/webindex/footer}" frameborder="0" seamless></iframe>
+</div>
+
+</body>
+<script src="../../js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/swiper.animate1.0.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        effect: 'fade',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000, //1秒切换一次
+        },
+        on: {
+            init: function() {
+                swiperAnimateCache(this); //隐藏动画元素
+                this.emit('slideChangeTransitionEnd'); //在初始化时触发一次slideChangeTransitionEnd事件
+            },
+            slideChangeTransitionEnd: function() {
+                swiperAnimate(this); //每个slide切换结束时运行当前slide动画
+            }
+        }
+    });
+</script>
+<script src="../../js/layui.js.下载"></script>
+<script>
+    layui.config({
+        base: '../../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index']);
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数低于页码总数
+    });
+</script>
+<script type="text/javascript">
+    //tab切换
+    $('.tab-button').click(function() {
+        var tab = $(this).data('tab')
+        $(this).addClass('cur').siblings('.tab-button').removeClass('cur');
+        $('#tab-' + tab + '').addClass('active').siblings('.tab-item').removeClass('active');
+    });
+    //新闻列表切换
+    $('.information-tab .article-list').hover(function() {
+        $(this).addClass('current').siblings('.article-list').removeClass('current');
+    }, function() {
+        $(this).parent('.information-right').find('.article-list:first-of-type').addClass('current').siblings('.article-list').removeClass('current');
+    });
+</script>
+
+</html>

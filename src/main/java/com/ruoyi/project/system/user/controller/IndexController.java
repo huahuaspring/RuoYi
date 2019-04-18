@@ -46,4 +46,19 @@ public class IndexController extends BaseController
         mmap.put("version", ruoYiConfig.getVersion());
         return "main";
     }
+
+    // 系统介绍
+    @GetMapping("/system/message")
+    public String message(ModelMap mmap)
+    {
+        //mmap.put("version", ruoYiConfig.getVersion());
+        return "message";
+    }
+
+    @GetMapping("/system/footer")
+    public String footer()
+    {
+        System.out.println("我已经执行了一次了");
+        return "/webindex/footer";
+    }
 }
